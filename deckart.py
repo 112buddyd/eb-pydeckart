@@ -102,7 +102,7 @@ def generate(card_name=None, title=None):
     # Draw text over color ID bar with a white outline
     font = ImageFont.truetype("font.ttf", 42)
     w, h = draw.textsize(title, font=font)
-    draw.text(((W-w)/2, H+(H*.1-h)/2), title, fill='black', font=font, stroke_fill='white', stroke_width=1)
+    draw.text(((W-w)/2, H+(H*.1-h)/2), title, fill='white', font=font, stroke_fill='black', stroke_width=2)
 
     # Save image as jpg to S3
     client = boto3.client('s3', region_name='us-east-2')
