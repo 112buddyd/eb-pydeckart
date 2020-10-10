@@ -9,4 +9,3 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: eb-pydeckart
