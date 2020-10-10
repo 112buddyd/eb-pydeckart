@@ -1,14 +1,24 @@
+import os
 from flask import Flask
+from flask import render_template, flash, redirect
+from forms import CardGeneratorForm
+
+from deckart import generate
+from config import Config
+
 application = Flask(__name__)
+application.config.from_object(Config)
 
-@application.route("/")
+@application.route("/", methods=['GET', 'POST'])
 def index():
-    return "Your Flask App Works!"
-
-@application.route("/hello")
-def hello():
-    return "Hello World!"
-
+    form = CardGeneratorForm()
+    img = None
+    if form.validate_on_submit():
+        flash('Generating art...')
+        key = generate(card_name=form.card_name.data, title=form.title.data)
+        img = f"https://d1tv6m53xyhfh2.cloudfront.net/{key}"
+        return render_template('index.html', form=form, img=img)
+    return render_template('index.html', form=form)
 
 if __name__ == "__main__":
     application.run(port=5000, debug=True)

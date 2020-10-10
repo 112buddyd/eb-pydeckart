@@ -1,0 +1,19 @@
+{% block content %}
+    <h1>Generate Deckbox Art</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.card_name.label }}<br>
+            {{ form.card_name(size=32) }}
+        </p>
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    {% if img %}
+    <img src={{img}}>
+    {% endif %}
+{% endblock %}
