@@ -100,7 +100,7 @@ def generate(card_name=None, title=None):
         draw.rectangle([i*col_width, H, (i+1)*col_width-1, H+H*.1], fill=colors[v], width=H*.1)
 
     # Draw text over color ID bar with a white outline
-    font = ImageFont.truetype("MPlantin.ttf", 42)
+    font = ImageFont.truetype("font.ttf", 42)
     w, h = draw.textsize(title, font=font)
     draw.text(((W-w)/2, H+(H*.1-h)/2), title, fill='black', font=font, stroke_fill='white', stroke_width=1)
 
