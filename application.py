@@ -14,10 +14,12 @@ def index():
     form = CardGeneratorForm()
     img = None
     if form.validate_on_submit():
-        flash('Generating art...')
-        key = generate(card_name=form.card_name.data, title=form.title.data)
-        img = f"https://d1tv6m53xyhfh2.cloudfront.net/{key}"
-        return render_template('index.html', form=form, img=img)
+        key, error = generate(card_name=form.card_name.data, title=form.title.data)
+        if key:
+            img = f"https://d1tv6m53xyhfh2.cloudfront.net/{key}"
+            return render_template('index.html', form=form, img=img)
+        else:
+            return render_template('index.html', form=form, img=None, error=error)
     return render_template('index.html', form=form)
 
 if __name__ == "__main__":

@@ -8,12 +8,16 @@
         </p>
         <p>
             {{ form.title.label }}<br>
-            {{ form.title(size=32) }}
+            {{ form.title(size=32, maxlength=21) }}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
 
     {% if img %}
     <img src={{img}}>
+    {% endif %}
+    
+    {% if error %}
+    <p style="color:red">{{ error }}</p>
     {% endif %}
 {% endblock %}
