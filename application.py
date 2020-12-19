@@ -14,7 +14,7 @@ def index():
     form = CardGeneratorForm()
     img = None
     if form.validate_on_submit():
-        key, error = generate(card_name=form.card_name.data, title=form.title.data)
+        key, error = generate(card_name=form.card_name.data, title=form.title.data, colors=form.colors)
         if key:
             img = f"https://d1tv6m53xyhfh2.cloudfront.net/{key}"
             return render_template('index.html', form=form, img=img)
