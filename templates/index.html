@@ -7,6 +7,10 @@
             {{ form.card_name(size=32) }}
         </p>
         <p>
+            {{ form.colors.label }}<br>
+            {{ form.colors(size=32, maxlength=5) }}
+        </p>
+        <p>
             {{ form.title.label }}<br>
             {{ form.title(size=32, maxlength=21) }}
         </p>

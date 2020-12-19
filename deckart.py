@@ -2,6 +2,7 @@ import requests
 import boto3
 from datetime import datetime
 import os
+import re
 
 from PIL import Image
 from PIL import ImageFont
@@ -49,7 +50,7 @@ def id_sorter(id):
             return combos[key]
 
 
-def generate(card_name=None, title=None):
+def generate(card_name=None, title=None, colors=None):
     api = "https://api.scryfall.com/cards/named?fuzzy={}"
 
     # get name of card
@@ -84,8 +85,18 @@ def generate(card_name=None, title=None):
         draw = ImageDraw.Draw(layer)
 
         # Fill new empty bottom of image with colors of commander's identity
-        # First, get the identity
-        identity = card['color_identity']
+        # First, get the identity or use color override if provided
+        r_colors = r"^([WUBRG]?)+$"
+        if colors:
+            if colors.lower() == 'colorless':
+                identity = ""
+            elif re.match(r_colors, colors.upper()):
+                identity = colors.upper()
+            else:
+
+        else:
+            identity = card['color_identity']
+        
         # Get width of each column based on number of colors
         if len(identity) == 0:
             identity = ['colorless',]
