@@ -93,7 +93,8 @@ def generate(card_name=None, title=None, colors=None):
             elif re.match(r_colors, colors.upper()):
                 identity = colors.upper()
             else:
-
+                identity = card['color_identity']
+                error = "Color identity override was invalid."
         else:
             identity = card['color_identity']
         
